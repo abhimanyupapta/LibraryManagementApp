@@ -19,4 +19,10 @@ router.route("/password/reset/:token").put(userController.resetPassword);
 
 router.route("/me").get(isAuthenticated, userController.userProfile);
 
+router.route("/api/v1/getCSRFToken").get((req, res) => {
+  res.json({
+    csrfToken: req.csrfToken(),
+  });
+});
+
 module.exports = router;

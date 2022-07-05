@@ -39,11 +39,7 @@ app.use(csrfProtection);
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
-  app.get("/api/v1/getCSRFToken", (req, res) => {
-    res.json({
-      csrfToken: req.csrfToken(),
-    });
-  });
+ 
 
   next();
 });
