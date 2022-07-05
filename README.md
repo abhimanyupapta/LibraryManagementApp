@@ -1,2 +1,2 @@
-# HimalayanOrchards
-MERN stack E-commerce website made for apple orchard
+# Library Mangement App
+MERN stack website for library management
