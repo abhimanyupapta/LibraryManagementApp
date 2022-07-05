@@ -1,6 +1,9 @@
 {
   "name": "lbs",
   "version": "1.0.0",
+  "engines" : {
+    "node" : "16.13.1"
+  },
   "description": "",
   "main": "backend/server.js",
   "scripts": {
