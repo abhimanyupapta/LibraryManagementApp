@@ -17,10 +17,6 @@ router.route("/forgotPassword").post(userController.forgotPassword);
 
 router.route("/password/reset/:token").put(userController.resetPassword);
 
-router.route("/t").get((req, res, next) => {
-  res.status(200).json({
-    success: true,
-  });
-});
+router.route("/me").get(isAuthenticated, userController.userProfile);
 
 module.exports = router;

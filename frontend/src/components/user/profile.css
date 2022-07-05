@@ -1,0 +1,35 @@
+.main-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.left-profile img {
+    width: 40rem;
+}
+
+.right-profile {
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    
+    gap : 10rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap : 2rem;
+    font-size: 1.5rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+@media screen and (max-width : 600px) {
+    .main-profile {
+        flex-direction: column;
+    }
+
+    .left-profile img {
+        width : 20rem;
+    }
+}

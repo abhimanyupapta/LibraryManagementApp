@@ -1,7 +1,7 @@
 const Issue = require("../models/issueModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const { findById } = require("../models/issueModel");
+const Cart = require("../models/cartModel");
 
 //create new issue
 exports.createNewIssue = catchAsyncErrors(async (req, res, next) => {
@@ -13,6 +13,12 @@ exports.createNewIssue = catchAsyncErrors(async (req, res, next) => {
       issuedTill,
       user: req.user._id,
     });
+
+    const cart = await Cart.findOne({ user: req.user._id });
+
+    cart.books.splice(0, cart.books.length);
+
+    await cart.save();
 
     res.status(200).json({
       success: true,

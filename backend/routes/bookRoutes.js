@@ -21,6 +21,12 @@ router
 //get all books
 router.route("/books").get(isAuthenticated, bookController.getAllBooks);
 
+//get all books--admin
+router.route("/admin/books").get(isAuthenticated, authorizeRoles("admin"), bookController.getAllBooksAdmin);
+
+//get book details
+router.route("/books/:id").get(isAuthenticated, bookController.getBookDetails);
+
 //like Book
 router.route("/books/like").post(isAuthenticated, bookController.likeBook);
 

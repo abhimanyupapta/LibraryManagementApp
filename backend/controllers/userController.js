@@ -4,6 +4,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../../../Apple-Website/backend/utils/sendEmail");
 const crypto = require("crypto");
+const Issue = require("../models/issueModel");
 
 //register user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -26,19 +27,21 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
 //login user
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { loginEmail, loginPassword } = req.body;
 
-  if (!email || !password) {
+  if (!loginEmail || !loginPassword) {
     return next(new ErrorHandler("Please enter email and password", 400));
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email: loginEmail }).select("+password");
+
+  console.log(user);
 
   if (!user) {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  const isPasswordMatched = await user.comparePassword(password);
+  const isPasswordMatched = await user.comparePassword(loginPassword);
 
   if (!isPasswordMatched) {
     return next(new ErrorHandler("Invalid email or password", 401));
@@ -63,10 +66,12 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
 
 //user Profile
 exports.userProfile = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
+  const user = await User.findById(req.user._id);
+  const userIssues = await Issue.find({ user: req.user._id });
   res.status(200).json({
     success: true,
     user,
+    userIssues,
   });
 });
 

@@ -14,7 +14,7 @@ exports.createBook = catchAsyncErrors(async (req, res, next) => {
 
   const imageLink = {
     public_id: result.public_id,
-    imageUrl: result.secure_url,
+    image_url: result.secure_url,
   };
 
   req.body.image = imageLink;
@@ -143,6 +143,7 @@ exports.likeBook = catchAsyncErrors(async (req, res, next) => {
 // Review book
 exports.reviewBook = catchAsyncErrors(async (req, res, next) => {
   const { bookId, comment } = req.body;
+  console.log(bookId);
 
   const userId = req.user._id;
 
@@ -177,5 +178,35 @@ exports.reviewBook = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     TotalReviews,
+    review,
+  });
+});
+
+//get book details
+exports.getBookDetails = catchAsyncErrors(async (req, res, next) => {
+  const bookId = req.params.id;
+
+  if (!bookId) {
+    return next(ErrorHandler(`book not found`, 404));
+  }
+
+  const book = await Book.findById(bookId);
+
+  const iniLikes = book.likes.length;
+
+  res.status(200).json({
+    success: true,
+    book,
+    iniLikes,
+  });
+});
+
+// get all books--admin
+exports.getAllBooksAdmin = catchAsyncErrors(async (req, res, next) => {
+  const books = await Book.find();
+
+  res.status(200).json({
+    success: true,
+    books,
   });
 });

@@ -7,6 +7,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
 const User = require("./models/userModel");
 const fileUpload = require("express-fileupload");
+const path = require("path");
 const app = express();
 
 // Config
@@ -38,8 +39,12 @@ app.use(csrfProtection);
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
-  res.locals.csrfToken = req.csrfToken();
-  console.log(req.csrfToken());
+  app.get("/api/v1/getCSRFToken", (req, res) => {
+    res.json({
+      csrfToken: req.csrfToken(),
+    });
+  });
+
   next();
 });
 
@@ -66,10 +71,18 @@ app.use((req, res, next) => {
 const user = require("./routes/userRoutes");
 const book = require("./routes/bookRoutes");
 const issue = require("./routes/issueRoutes");
+const cart = require("./routes/cartRoutes");
 
 app.use("/api/v1/", user);
 app.use("/api/v1/", book);
 app.use("/api/v1/", issue);
+app.use("/api/v1/", cart);
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+});
 
 //middleware for errors
 app.use(errorMiddleware);

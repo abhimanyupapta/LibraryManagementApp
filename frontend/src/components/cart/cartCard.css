@@ -1,0 +1,26 @@
+.cart-card {
+    display : flex;
+    padding: 1rem;
+    width: 80%;
+    height: 8rem;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    margin-top: 3rem;
+}
+
+.info  {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   gap: 1rem;
+}
+
+.info h3 {
+    text-transform: capitalize;
+}
+
+.cart-card img {
+    width : 5rem;
+}
+

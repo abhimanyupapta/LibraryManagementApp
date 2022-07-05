@@ -1,0 +1,44 @@
+.main-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-cart h1 {
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+    width:20%;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    color: rgb(43, 42, 42);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 200;
+    font-size: 3rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    gap : 2rem;
+}
+
+.card button,
+.issue-btn {
+    border : 2px solid rgb(9, 122, 99);
+    padding : .5rem;
+    height: 4rem;
+    cursor: pointer;
+    background: transparent;
+    transition: all .25s;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.card button:hover,
+.issue-btn:hover {
+    background-color: rgb(9, 122, 99);
+    color : rgb(255, 255, 255);
+}
