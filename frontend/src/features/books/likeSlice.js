@@ -12,12 +12,12 @@ export const likeBook = createAsyncThunk(
   "like/likeBook",
   async (input, thunkAPI) => {
     try {
-      const { bookId, csrfToken } = input;
-      console.log(csrfToken);
+      const { bookId} = input;
+   
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
+       
         },
       };
       const resp = await axios.post("/api/v1/books/like", { bookId }, config);

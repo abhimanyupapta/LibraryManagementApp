@@ -7,8 +7,8 @@ import "./editIssue.css";
 
 const EditIssue = () => {
   const { id } = useParams();
-  const { csrfToken, isLoading } = useSelector((state) => state.csrf);
-  const { allIssues, isloading } = useSelector((state) => state.admin);
+
+  const { allIssues, isLoading } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
   const [status, setStatus] = useState("");
 
@@ -16,7 +16,7 @@ const EditIssue = () => {
 
   const editIssueHandler = (e) => {
     e.preventDefault();
-    dispatch(editIssue({id, status, csrfToken }));
+    dispatch(editIssue({id, status}));
   };
 
   return (

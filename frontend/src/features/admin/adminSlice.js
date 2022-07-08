@@ -56,12 +56,11 @@ export const editIssue = createAsyncThunk(
   "admin/editIssue",
   async (input, thunkAPI) => {
     try {
-      const { id, status, csrfToken } = input;
+      const { id, status } = input;
 
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
         },
       };
       const resp = await axios.put(
@@ -84,12 +83,11 @@ export const deleteBook = createAsyncThunk(
   "admin/deleteBook",
   async (input, thunkAPI) => {
     try {
-      const { id, csrfToken } = input;
+      const { id } = input;
 
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
         },
       };
       const resp = await axios.delete(`/api/v1/admin/book/${id}`, config);
@@ -127,7 +125,6 @@ export const addBook = createAsyncThunk(
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": input[1],
         },
       };
       const resp = await axios.post(`/api/v1/admin/book/new`, input[0], config);

@@ -11,12 +11,12 @@ export const postCart = createAsyncThunk(
   "cart/postCart",
   async (input, thunkAPI) => {
     try {
-      const { bookId, csrfToken } = input;
+      const { bookId} = input;
 
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
+         
         },
       };
       const resp = await axios.post("/api/v1/cart/add", { bookId }, config);
@@ -48,12 +48,12 @@ export const delCart = createAsyncThunk(
   "cart/delCart",
   async (input, thunkAPI) => {
     try {
-      const { id, csrfToken } = input;
-      console.log(id);
+      const { id} = input;
+      
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
+       
         },
       };
       const resp = await axios.delete(`/api/v1/cart/del/${id}`, config);

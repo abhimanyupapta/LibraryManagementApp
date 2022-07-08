@@ -7,7 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCsrfToken } from "./features/csrfTokenSlice";
 import LoginSignUp from "./components/login-signup/LoginSignUp";
 import Books from "./components/books/Books.js";
 import { loadUser } from "./features/user/userSlice";
@@ -38,7 +37,7 @@ function App() {
   }
 
   useEffect(() => {
-    dispatch(getCsrfToken());
+  
     dispatch(loadUser());
   }, [dispatch]);
 

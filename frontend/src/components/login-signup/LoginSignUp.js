@@ -13,7 +13,7 @@ function LoginSignUp() {
   const alert = useAlert();
 
   const { isAuth, error } = useSelector((state) => state.user);
-  const { csrfToken } = useSelector((state) => state.csrf);
+
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
@@ -34,8 +34,8 @@ function LoginSignUp() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    console.log(csrfToken);
-    dispatch(login({ loginEmail, loginPassword, csrfToken }));
+   
+    dispatch(login({ loginEmail, loginPassword}));
   };
 
   const registerSubmit = (e) => {
@@ -48,7 +48,7 @@ function LoginSignUp() {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     
-    dispatch(signUp([myForm,csrfToken]));
+    dispatch(signUp([myForm]));
 
   };
 

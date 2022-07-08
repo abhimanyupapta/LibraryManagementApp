@@ -16,7 +16,7 @@ export const submitReview = createAsyncThunk(
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": input[1],
+        
         },
       };
       const resp = await axios.post("/api/v1/books/review", input[0] , config);

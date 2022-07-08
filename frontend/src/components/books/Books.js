@@ -21,7 +21,7 @@ function Books() {
     filteredBooksCount,
   } = useSelector((state) => state.books);
 
-  console.log(resultPerPage);
+  
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -29,7 +29,7 @@ function Books() {
 
   let count = filteredBooksCount;
 
-  const { csrfToken } = useSelector((state) => state.csrf);
+ 
 
   useEffect(() => {
     if (error) {
@@ -60,7 +60,7 @@ function Books() {
             books.map((b) => (
               <BookCard
                 key={b._id}
-                csrfToken={csrfToken}
+               
                 bookId={b._id}
                 image_url={b.image.image_url}
                 name={b.name}

@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./features/user/userSlice";
 import booksSlice from "./features/books/booksSlice";
-import csrfTokenSlice from "./features/csrfTokenSlice";
 import likeSlice from "./features/books/likeSlice";
 import bookDetailSlice from "./features/books/bookDetailSlice";
 import reviewSlice from "./features/books/reviewSlice";
@@ -10,7 +9,7 @@ import issueSlice from "./features/issue/issueSlice";
 import adminSlice from "./features/admin/adminSlice";
 export const store = configureStore({
   reducer: {
-    csrf: csrfTokenSlice.reducer,
+  
     user: userSlice.reducer,
     books: booksSlice.reducer,
     like: likeSlice.reducer,

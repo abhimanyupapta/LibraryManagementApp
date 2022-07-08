@@ -6,7 +6,7 @@ import { likeBook } from "../../features/books/likeSlice";
 import { Link } from "react-router-dom";
 
 const BookCard = ({
-  csrfToken,
+
   bookId,
   image_url,
   name,
@@ -28,7 +28,7 @@ const BookCard = ({
 
   const likeBookFn = (e) => {
     e.preventDefault();
-    dispatch(likeBook({ bookId, csrfToken }));
+    dispatch(likeBook({ bookId}));
 
     if (isLiked) {
       setNumLikes(numLikes - 1);

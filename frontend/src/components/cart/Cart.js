@@ -9,7 +9,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const { cart, isLoading } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const { csrfToken } = useSelector((state) => state.csrf);
+
 
   useEffect(() => {
     dispatch(getCart());
@@ -34,7 +34,7 @@ const Cart = () => {
                   />
                   <button
                     key={2}
-                    onClick={() => dispatch(delCart({ id: b.book, csrfToken }))}
+                    onClick={() => dispatch(delCart({ id: b.book}))}
                   >
                     Remove
                   </button>

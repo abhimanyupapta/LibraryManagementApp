@@ -15,10 +15,10 @@ const DashBoard = () => {
     (state) => state.admin
   );
 
-  const { csrfToken } = useSelector((state) => state.csrf);
+
 
   const deleteBookHandler = (id) => {
-    dispatch(deleteBook({ id, csrfToken }));
+    dispatch(deleteBook({ id}));
   };
 
   const onClickHandler = (e) => {

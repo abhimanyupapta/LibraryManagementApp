@@ -10,8 +10,6 @@ import { addBook } from "../../features/admin/adminSlice";
 const AddBook = () => {
   const dispatch = useDispatch();
 
-  const { csrfToken } = useSelector((state) => state.csrf);
-
   const [name, setName] = useState("");
 
   const [description, setDescription] = useState("");
@@ -36,7 +34,7 @@ const AddBook = () => {
     images.forEach((image) => {
       myForm.append("image", image);
     });
-    dispatch(addBook([myForm, csrfToken]));
+    dispatch(addBook([myForm]));
   };
 
   const createProductImagesChange = (e) => {

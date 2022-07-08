@@ -16,13 +16,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     password,
   });
 
-  (req.session.isLoggedIn = true), (req.session.user = user);
-  await req.session.save;
-
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  sendToken(user, 200, res);
 });
 
 //login user
@@ -47,20 +41,19 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  (req.session.isLoggedIn = true), (req.session.user = user);
-  await req.session.save;
-
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  sendToken(user, 200, res);
 });
 
 //logout user
 exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
-  await req.session.destroy();
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+
   res.status(200).json({
     success: true,
+    message: "Logged Out",
   });
 });
 
@@ -149,12 +142,5 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  req.session.isLoggedIn = true;
-  req.session.user = user;
-  await req.session.save();
-
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  sendToken(user, 200, res);
 });

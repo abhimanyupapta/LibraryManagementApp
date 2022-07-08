@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom"
 import "./profile.css"
 
 const Profile = () => {
-  const { user, userIssues, isLoading } = useSelector((state) => state.user);
+  const { user, isLoading } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
 

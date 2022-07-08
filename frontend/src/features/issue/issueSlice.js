@@ -11,11 +11,11 @@ export const postIssue = createAsyncThunk(
   "issue/postIssue",
   async (input, thunkAPI) => {
     try {
-      const { books, issuedTill, csrfToken } = input;
+      const { books, issuedTill} = input;
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
+        
         },
       };
       const resp = await axios.post(

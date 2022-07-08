@@ -10,7 +10,7 @@ const ConfirmIssue = () => {
   const navigate = useNavigate();
   const { cart, isLoading } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const { csrfToken } = useSelector((state) => state.csrf);
+ 
 
   const [issueTill, setIssueTill] = useState("");
 
@@ -18,7 +18,7 @@ const ConfirmIssue = () => {
     e.preventDefault();
    
 
-    dispatch(postIssue({books : cart.books, issuedTill : issueTill, csrfToken}));
+    dispatch(postIssue({books : cart.books, issuedTill : issueTill}));
     navigate("/books")
   };
 

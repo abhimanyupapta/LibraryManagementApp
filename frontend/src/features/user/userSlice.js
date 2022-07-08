@@ -13,12 +13,11 @@ export const login = createAsyncThunk(
   "userSlice/login",
   async (input, thunkAPI) => {
     try {
-      const { loginEmail, loginPassword, csrfToken } = input;
+      const { loginEmail, loginPassword } = input;
 
       const config = {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-TOKEN": csrfToken,
         },
       };
       const resp = await axios.post(
@@ -44,7 +43,6 @@ export const signUp = createAsyncThunk(
       const config = {
         headers: {
           "Content-Type": "multi-part",
-          "X-CSRF-TOKEN": input[1],
         },
       };
       const resp = await axios.post("/api/v1/register", input[0], config);
@@ -90,8 +88,6 @@ export const logout = createAsyncThunk(
     }
   }
 );
-
-
 
 const userSlice = createSlice({
   name: "user",
@@ -158,8 +154,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload.message;
         state.isAuth = true;
-      })
-     
+      });
   },
 });
 

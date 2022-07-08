@@ -25,7 +25,7 @@ const BookDetail = () => {
     (state) => state.bookDetails
   );
 
-  const { csrfToken } = useSelector((state) => state.csrf);
+ 
 
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ const BookDetail = () => {
   const likeBookFn = (e) => {
     e.preventDefault();
     const bookId = id;
-    dispatch(likeBook({ bookId, csrfToken }));
+    dispatch(likeBook({ bookId}));
 
     if (isLiked) {
       setNumLikes(numLikes - 1);
@@ -67,14 +67,14 @@ const BookDetail = () => {
     myForm.set("bookId", id);
     myForm.set("comment", comment);
 
-    dispatch(submitReview([myForm, csrfToken]));
+    dispatch(submitReview([myForm]));
 
     setOpen(false);
   };
 
   const issueHandler = () => {
     
-    dispatch(postCart({ bookId: id, csrfToken }));
+    dispatch(postCart({ bookId: id}));
   };
 
   useEffect(() => {
